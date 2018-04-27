@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="array_target">
+        <item>上班</item>
+        <item>下班</item>
+        <item>其他</item>
+    </string-array>
+    <string-array name="array_re_type">
+        <item>拼车</item>
+        <item>滴答</item>
+    </string-array>
+    <string-array name="array_ex_type">
+        <item>停车费</item>
+        <item>加油费</item>
+        <item>保养费</item>
+        <item>其他费用</item>
+    </string-array>
+</resources>

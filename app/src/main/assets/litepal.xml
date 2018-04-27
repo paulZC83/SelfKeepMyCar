@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<litepal>
+    <dbname value="selfkeepcar" ></dbname>
+
+    <version value="3" ></version>
+
+    <list>
+        <mapping class="cn.sh.changxing.selfkeepmycar.db.model.Record"></mapping>
+    </list>
+</litepal>

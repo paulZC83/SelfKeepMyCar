@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">养车记录</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="home">首页</string>
+    <string name="record">流水</string>
+    <string name="fuel_consumption">油耗</string>
+    <string name="total_balance">总结余：%1$s</string>
+    <string name="total_expenses">总支出：%1$s</string>
+    <string name="total_receipts">总收入：%1$s</string>
+    <string name="av_fuel_consumption">平均油耗：%1$s</string>
+    <string name="expenses">行驶支出：%1$s</string>
+    <string name="receipts">行驶收入：%1$s</string>
+    <string name="expenses_only">支出：%1$s</string>
+    <string name="receipts_only">收入：%1$s</string>
+    <string name="balance">结余：%1$s</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+</resources>
