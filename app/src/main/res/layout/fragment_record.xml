@@ -5,6 +5,7 @@
     tools:context="cn.sh.changxing.selfkeepmycar.fragment.RecordFragment"
     android:orientation="vertical">
 
+
     <RelativeLayout
         android:id="@+id/title_layout"
         android:layout_width="match_parent"
@@ -51,6 +52,14 @@
         android:layout_height="0dp"
         android:layout_weight="3"
         android:orientation="vertical">
+
+        <com.victor.loading.newton.NewtonCradleLoading
+            android:id="@+id/newton_cradle_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="150dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:visibility="gone"/>
         <ImageView
             android:id="@+id/record_bk"
             android:layout_width="match_parent"

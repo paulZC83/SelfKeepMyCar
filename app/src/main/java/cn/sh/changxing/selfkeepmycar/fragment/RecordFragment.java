@@ -13,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.victor.loading.newton.NewtonCradleLoading;
+
 import org.litepal.crud.DataSupport;
 
 import java.util.ArrayList;
@@ -53,6 +55,8 @@ public class RecordFragment extends BaseFragment {
     ImageView mRecordBk;
     @BindView(R.id.record_title_bk)
     ImageView mTitleBk;
+    @BindView(R.id.newton_cradle_loading)
+    NewtonCradleLoading mLoading;
     public RecordFragment() {
         // Required empty public constructor
     }
@@ -146,7 +150,10 @@ public class RecordFragment extends BaseFragment {
                 dialog.setOnConfirmClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        int id = mData.get(groupPosition).getChildList().get(childPosition).getId();
+                        mLoading.setVisibility(View.VISIBLE);
+                        mLoading.start();
+//                        mLoading.setLoadingColor(R.color.colorPrimary);
+                        final int id = mData.get(groupPosition).getChildList().get(childPosition).getId();
                         Record record = DataSupport.where("id = ?", id+"").findFirst(Record.class);
                         record.setObjectId(record.getObjId());
                         record.delete(new UpdateListener() {
@@ -157,10 +164,15 @@ public class RecordFragment extends BaseFragment {
                                 } else {
                                     Log.d("RecordFragment", "RecordBmob删除失败:>"+e.getMessage());
                                 }
+                                DataSupport.delete(Record.class, id);
+                                List<Record> records = DataSupport.order("dateYmd desc").find(Record.class);
+                                mData = getData(records);
+                                adapter.updateData(mData);
+                                dialog.dismiss();
+                                mLoading.stop();
+                                mLoading.setVisibility(View.GONE);
                             }
                         });
-
-                        DataSupport.delete(Record.class, id);
 
 
 //                        BmobQuery<RecordBmob> query = new BmobQuery<>();
@@ -190,10 +202,7 @@ public class RecordFragment extends BaseFragment {
 //                        });
 
 
-                        List<Record> records = DataSupport.order("dateYmd desc").find(Record.class);
-                        mData = getData(records);
-                        adapter.updateData(mData);
-                        dialog.dismiss();
+
                     }
                 });
                 dialog.show();

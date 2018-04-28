@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.victor.loading.newton.NewtonCradleLoading;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -68,6 +69,8 @@ public class AddRecordActivity extends BaseActivity {
     ImageView mAddBk;
     @BindView(R.id.reset_price)
     Button mBtResetPrice;
+    @BindView(R.id.add_newton_cradle_loading)
+    NewtonCradleLoading mLoading;
 
     private Date mDate;
     private int mYear, mMonth, mDay;
@@ -157,6 +160,9 @@ public class AddRecordActivity extends BaseActivity {
 
     private void saveData(){
         if (checkData()) {
+            mLoading.setVisibility(View.VISIBLE);
+            mLoading.start();
+//            mLoading.setLoadingColor(R.color.colorPrimary);
             final Record record = new Record();
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
             record.setDateYmd(mTvDate.getText().toString());
@@ -191,17 +197,15 @@ public class AddRecordActivity extends BaseActivity {
                 public void done(String objectId, BmobException e) {
                     if (e == null) {
                         Log.d("AddRecordActivity", "Record添加数据成功:"+objectId);
-                        record.setObjId(objectId);
-                        record.setObjectId(objectId);
-                        record.saves();
-                        finish();
                     } else {
                         Log.d("AddRecordActivity", "Record创建数据失败:"+e.getMessage());
-                        record.setObjId(objectId);
-                        record.setObjectId(objectId);
-                        record.saves();
-                        finish();
                     }
+                    record.setObjId(objectId);
+                    record.setObjectId(objectId);
+                    record.saves();
+                    mLoading.stop();
+                    mLoading.setVisibility(View.GONE);
+                    finish();
                 }
             });
 
